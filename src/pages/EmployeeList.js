@@ -15,6 +15,7 @@ export const EmployeeList = () => {
       <div className="alert alert-secondary">
         <h3>Employee List</h3>
       </div>
+
       <table className="table">
         <thead className="thead-dark">
           <tr>

@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from "@reduxjs/toolkit";
-import axios from "axios";
 import thunk from "redux-thunk";
+import axios from "axios";
 
 const initState = {
   employeeList: [],
@@ -13,11 +13,11 @@ const EMPLOYEE_CREATE_ACTION_TYPE = "EMPLOYEE_CREATE_ACTION_TYPE";
 const EMPLOYEE_UPDATE_ACTION_TYPE = "EMPLOYEE_UPDATE_ACTION_TYPE";
 const EMPLOYEE_DELETE_ACTION_TYPE = "EMPLOYEE_DELETE_ACTION_TYPE";
 
-//ACTIONS
+// ACTIONS
 export const getAllEmployeeAction = () => {
   return async (dispatch) => {
-    //API CALL
-    const url = `http://localhost:8080/api/employee/`;
+    // API CALL
+    const url = `http://localhost:8080/api/v1/employee/get`;
     const response = await axios.get(url);
 
     console.log(response);
@@ -29,25 +29,23 @@ export const getAllEmployeeAction = () => {
 
 export const createEmployeeAction = (payload) => {
   return async (dispatch) => {
-    const url = `http://localhost:8080/api/employee/`;
-    await axios.post();
+    const url = `http://localhost:8080/api/v1/employee/post`;
+    await axios.post(url, payload);
 
-    //update the ui.TODO
+    // update the ui. TODO
   };
 };
 
-//REDURE FOR STATE UPDATE
+// REDURE FOR STATE UPDTE
 function EmployeeReducer(state = initState, action) {
   switch (action.type) {
     case EMPLOYEE_GET_ALL_ACTION_TYPE:
       return { ...state, employeeList: action.payload };
-
     default:
       return state;
   }
 }
 
-//MIDDLEWARE FOR THE ASYNC OPERATION
-const store = createStore(EmployeeReducer, applyMiddleware());
-
+// MIDDLEWARE FOR THE ASYNC OPOERATION
+const store = createStore(EmployeeReducer, applyMiddleware(thunk));
 export { store };

@@ -31,20 +31,20 @@ export const EmployeeUpsert = () => {
         mobile,
       })
     );
-  };
 
-  //Clear the form
-  setFirstName("");
-  setLastName("");
-  setUserName("");
-  setPassword("");
-  setEmail("");
-  setMobile("");
+    // clear the form
+    setFirstName("");
+    setLastName("");
+    setUserName("");
+    setPassword("");
+    setEmail("");
+    setMobile("");
+  };
 
   return (
     <div>
       <div className="alert alert-secondary">
-        <h3>Employee Create</h3>
+        <h3>Employee Craete</h3>
       </div>
 
       <form className="mx-4">
@@ -54,7 +54,7 @@ export const EmployeeUpsert = () => {
             value={firstName}
             onChange={updateFirstName}
             className="form-control form-control-lg mb-1"
-            placeholder="Enter your First Name"
+            placeholder="Enter First Name"
           />
         </div>
 
@@ -102,7 +102,7 @@ export const EmployeeUpsert = () => {
           <input
             type="text"
             value={mobile}
-            onChange={updateEmail}
+            onChange={updateMobile}
             className="form-control form-control-lg mb-1"
             placeholder="Enter Mobile"
           />
@@ -111,8 +111,9 @@ export const EmployeeUpsert = () => {
         <div>
           <input
             type="button"
+            onClick={addNewEmployee}
             value="Add Employee"
-            className="btn btn-secondary w-100"
+            className="btn btn-lg btn-secondary w-100"
           />
         </div>
       </form>

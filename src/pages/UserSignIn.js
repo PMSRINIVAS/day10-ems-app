@@ -24,7 +24,7 @@ export const UserSignIn = () => {
       className="bg-dark  d-flex justify-content-center align-items-center "
       style={{ height: "100vh" }}
     >
-      <div className="w-75">
+      <div className="w-50">
         <h1 className="text-dark text-center alert alert-info">
           Application Sign In
         </h1>
@@ -61,7 +61,7 @@ export const UserSignIn = () => {
               <input
                 type="button"
                 value="SignUp Here"
-                className="btn btn-link w-100"
+                className="btn btn-link w-100 btn-lg"
               />
             </Link>
           </div>

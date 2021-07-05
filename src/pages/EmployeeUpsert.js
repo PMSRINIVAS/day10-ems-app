@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createEmployeeAction } from "../redux/store";
@@ -5,6 +6,7 @@ import { createEmployeeAction } from "../redux/store";
 export const EmployeeUpsert = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+  const formEl = useRef();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -21,24 +23,34 @@ export const EmployeeUpsert = () => {
   const updateMobile = (e) => setMobile(e.target.value);
 
   const addNewEmployee = () => {
-    dispatch(
-      createEmployeeAction({
-        firstName,
-        lastName,
-        userName,
-        password,
-        email,
-        mobile,
-      })
-    );
+    //WRITE LOGIC FOR THE VALIDATION :: FORM_ELEMENT / FORM_TAG
+    // console.log(formEl.current);
+    // console.log(formEl.current.checkValidity());
 
-    // clear the form
-    setFirstName("");
-    setLastName("");
-    setUserName("");
-    setPassword("");
-    setEmail("");
-    setMobile("");
+    const isFormValid = formEl.current.checkValidity();
+    if (isFormValid) {
+      dispatch(
+        createEmployeeAction({
+          firstName,
+          lastName,
+          userName,
+          password,
+          email,
+          mobile,
+        })
+      );
+
+      // clear the form
+      setFirstName("");
+      setLastName("");
+      setUserName("");
+      setPassword("");
+      setEmail("");
+      setMobile("");
+    } else {
+      // form.classList.add('was-validated');
+      formEl.current.classList.add("was-validated");
+    }
   };
 
   return (
@@ -47,7 +59,7 @@ export const EmployeeUpsert = () => {
         <h3>Employee Craete</h3>
       </div>
 
-      <form className="mx-4">
+      <form ref={formEl} className="mx-4 needs-validation " noValidate>
         <div>
           <input
             type="text"
@@ -55,6 +67,7 @@ export const EmployeeUpsert = () => {
             onChange={updateFirstName}
             className="form-control form-control-lg mb-1"
             placeholder="Enter First Name"
+            required
           />
         </div>
 
@@ -65,6 +78,7 @@ export const EmployeeUpsert = () => {
             onChange={updateLastName}
             className="form-control form-control-lg mb-1"
             placeholder="Enter Last Name"
+            required
           />
         </div>
 
@@ -75,6 +89,7 @@ export const EmployeeUpsert = () => {
             onChange={updateUserName}
             className="form-control form-control-lg mb-1"
             placeholder="Enter User Name"
+            required
           />
         </div>
 
@@ -85,6 +100,7 @@ export const EmployeeUpsert = () => {
             onChange={updatePassword}
             className="form-control form-control-lg mb-1"
             placeholder="Enter Password"
+            required
           />
         </div>
 
@@ -95,6 +111,7 @@ export const EmployeeUpsert = () => {
             onChange={updateEmail}
             className="form-control form-control-lg mb-1"
             placeholder="Enter Email"
+            required
           />
         </div>
 
@@ -105,6 +122,7 @@ export const EmployeeUpsert = () => {
             onChange={updateMobile}
             className="form-control form-control-lg mb-1"
             placeholder="Enter Mobile"
+            required
           />
         </div>
 

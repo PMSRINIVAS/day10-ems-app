@@ -1,15 +1,34 @@
+import { useRef } from "react";
+
 export const UserSignIn = () => {
+  const formEl = useRef();
+
+  const signInUser = (e) => {
+    e.preventDefault();
+
+    const isFormValid = formEl.current.checkValidity();
+    console.log(isFormValid);
+
+    if (isFormValid) {
+      //dispatch the call to redux :: for API Call
+      //TODO
+      //ON SUCCESS, WILL REDIRECT TO NEXT PAGE
+    } else {
+      e.stopPropagation();
+      formEl.current.classList.add("was-validated");
+    }
+  };
   return (
     <div
       className="bg-dark  d-flex justify-content-center align-items-center "
       style={{ height: "100vh" }}
     >
-      <div className="w-50">
+      <div className="w-75">
         <h1 className="text-dark text-center alert alert-info">
           Application Sign In
         </h1>
 
-        <form>
+        <form ref={formEl} className="needs-validation" noValidate>
           <div>
             <input
               type="text"
@@ -31,6 +50,7 @@ export const UserSignIn = () => {
             <input
               type="button"
               value="SIGN IN"
+              onClick={signInUser}
               className="btn btn-info btn-lg w-100"
             />
           </div>

@@ -20,11 +20,11 @@ const EMPLOYEE_DELETE_ACTION_TYPE = "EMPLOYEE_DELETE_ACTION_TYPE";
 // ACTIONS
 export const getAllEmployeeAction = () => {
   return async (dispatch) => {
-    // API CALL
+    // API CALL :: FETCH RECORDS
     const url = `http://localhost:8080/api/v1/employee/get`;
     const response = await axios.get(url);
 
-    console.log(response);
+    // console.log(response);
 
     // UI UPDATE
     dispatch({ type: "EMPLOYEE_GET_ALL_ACTION_TYPE", payload: response.data });
@@ -44,6 +44,17 @@ export const createEmployeeAction = (payload) => {
     setTimeout(() => {
       dispatch({ type: PROGRESS_ACTION_TYPE, payload: false });
     }, 5000);
+  };
+};
+
+export const deleteEmployeeAction = (payload) => {
+  return async (dispatch) => {
+    //MAKE AN API/SERVER CALL
+    const url = `http://localhost:8080/api/v1/employee/delete/${payload.id}`;
+    await axios.delete(url);
+
+    //UPDATE THE UI TODO :: Fetch the updated list
+    dispatch(getAllEmployeeAction());
   };
 };
 

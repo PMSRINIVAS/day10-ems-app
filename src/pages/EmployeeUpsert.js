@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createEmployeeAction } from "../redux/store";
+import { AppNav } from "./AppNav";
 
 export const EmployeeUpsert = () => {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ export const EmployeeUpsert = () => {
 
   return (
     <div>
+      <AppNav />
       <div className="alert alert-secondary">
         <h3>Employee Create</h3>
       </div>

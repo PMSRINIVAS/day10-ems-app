@@ -57,7 +57,7 @@ export const EmployeeUpsert = () => {
   return (
     <div>
       <div className="alert alert-secondary">
-        <h3>Employee Craete</h3>
+        <h3>Employee Create</h3>
       </div>
 
       <form ref={formEl} className="mx-4 needs-validation " noValidate>
@@ -68,6 +68,8 @@ export const EmployeeUpsert = () => {
             onChange={updateFirstName}
             className="form-control form-control-lg mb-1"
             placeholder="Enter First Name"
+            minLength="3"
+            maxLength="30"
             required
           />
         </div>
@@ -79,6 +81,8 @@ export const EmployeeUpsert = () => {
             onChange={updateLastName}
             className="form-control form-control-lg mb-1"
             placeholder="Enter Last Name"
+            minLength="3"
+            maxLength="30"
             required
           />
         </div>
@@ -90,6 +94,8 @@ export const EmployeeUpsert = () => {
             onChange={updateUserName}
             className="form-control form-control-lg mb-1"
             placeholder="Enter User Name"
+            minLength="3"
+            maxLength="30"
             required
           />
         </div>
@@ -101,17 +107,21 @@ export const EmployeeUpsert = () => {
             onChange={updatePassword}
             className="form-control form-control-lg mb-1"
             placeholder="Enter Password"
+            minLength="6"
+            maxLength="10"
             required
           />
         </div>
 
         <div>
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={updateEmail}
             className="form-control form-control-lg mb-1"
             placeholder="Enter Email"
+            minLength="6"
+            maxLength="30"
             required
           />
         </div>
@@ -123,6 +133,8 @@ export const EmployeeUpsert = () => {
             onChange={updateMobile}
             className="form-control form-control-lg mb-1"
             placeholder="Enter Mobile"
+            minLength="10"
+            maxLength="10"
             required
           />
         </div>

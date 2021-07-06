@@ -7,7 +7,7 @@ const initState = {
   progress: false,
 };
 
-// ACTION TYPES
+// ACTION TYPES :: EMPLOYEE :: ENTITY1
 
 const PROGRESS_ACTION_TYPE = "PROGRESS_ACTION_TYPE";
 
@@ -55,6 +55,25 @@ export const deleteEmployeeAction = (payload) => {
 
     //UPDATE THE UI TODO :: Fetch the updated list
     dispatch(getAllEmployeeAction());
+  };
+};
+
+//ACTION TYPE FOR USER :: ENTITY2
+const USER_CREATE_ACTION_TYPE = "USER_CREATE_ACTION_TYPE";
+
+export const userCreateAction = (payload) => {
+  return async (dispatch) => {
+    //API CALL :: SERVER CALL
+    const url = `http://localhost:8080/api/v1/employee/post`;
+    await axios.post(url, payload);
+
+    //TODO for UI
+    dispatch({ type: PROGRESS_ACTION_TYPE, payload: true });
+
+    //after 5 seconds PROGRESS :: FALSE AGAIN
+    setTimeout(() => {
+      dispatch({ type: PROGRESS_ACTION_TYPE, payload: false });
+    }, 5000);
   };
 };
 

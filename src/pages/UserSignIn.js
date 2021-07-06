@@ -35,6 +35,8 @@ export const UserSignIn = () => {
               type="text"
               placeholder="Enter Username"
               className="form-control form-control-lg mb-2"
+              minLength="3"
+              maxLength="30"
               required
             />
           </div>
@@ -44,6 +46,8 @@ export const UserSignIn = () => {
               type="password"
               placeholder="Enter Password"
               className="form-control form-control-lg mb-2"
+              minLength="6"
+              maxLength="10"
               required
             />
           </div>

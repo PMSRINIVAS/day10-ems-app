@@ -5,11 +5,16 @@ import axios from "axios";
 const initState = {
   employeeList: [],
   progress: false,
+
+  //AUTH FAILS=> TRUE
+  authFailure: false,
+  authSuccess: false,
 };
 
 // ACTION TYPES :: EMPLOYEE :: ENTITY1
-
 const PROGRESS_ACTION_TYPE = "PROGRESS_ACTION_TYPE";
+const AUTH_FAILURE_ACTION_TYPE = "AUTH_FAILURE_ACTION_TYPE";
+const AUTH_SUCCESS_ACTION_TYPE = "AUTH_SUCCESS_ACTION_TYPE";
 
 const EMPLOYEE_GET_ALL_ACTION_TYPE = "EMPLOYEE_GET_ALL_ACTION_TYPE";
 const EMPLOYEE_GET_BY_ID_ACTION_TYPE = "EMPLOYEE_GET_BY_ID_ACTION_TYPE";
@@ -77,6 +82,31 @@ export const userCreateAction = (payload) => {
   };
 };
 
+export const authenticateUserAction = (payload) => {
+  return async (dispatch) => {
+    //API CALL :: Verification
+    const url = `http://localhost:8080/api/v1/employee/login`;
+    const response = await axios.post(url, payload);
+
+    if (response.data !== "") {
+      //VALID USER
+      //UPDATE THE UI
+      dispatch({ type: AUTH_SUCCESS_ACTION_TYPE, payload: true });
+
+      //Page is redirection so no alert until 5 secs..
+    } else {
+      //INVALID USER :: AUTH FAILS
+      //UPDATE THE UI
+      dispatch({ type: AUTH_FAILURE_ACTION_TYPE, payload: true });
+
+      //after 5 seconds PROGRESS :: FALSE AGAIN
+      setTimeout(() => {
+        dispatch({ type: AUTH_FAILURE_ACTION_TYPE, payload: false });
+      }, 5000);
+    }
+  };
+};
+
 // REDURE FOR STATE UPDTE
 function EmployeeReducer(state = initState, action) {
   switch (action.type) {
@@ -85,6 +115,12 @@ function EmployeeReducer(state = initState, action) {
 
     case PROGRESS_ACTION_TYPE:
       return { ...state, progress: action.payload };
+
+    case AUTH_FAILURE_ACTION_TYPE:
+      return { ...state, authFailure: action.payload };
+
+    case AUTH_SUCCESS_ACTION_TYPE:
+      return { ...state, authSuccess: action.payload };
 
     default:
       return state;

@@ -25,11 +25,9 @@ export const AppNav = () => {
         <h6>EMP-Upsert</h6>
       </Link>
 
-      <Link>
-        <h6 className="ml-2 text-danger" onClick={signOut} role="button">
-          Sign Out
-        </h6>
-      </Link>
+      <h6 className="ml-2 text-danger" onClick={signOut} role="button">
+        Sign Out
+      </h6>
       {/* <input
         type="button"
         value="Sign Out"

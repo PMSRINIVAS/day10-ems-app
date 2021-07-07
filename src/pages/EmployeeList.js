@@ -19,7 +19,7 @@ export const EmployeeList = () => {
 
   return (
     <div>
-      <AppNav />
+      {/* <AppNav /> */}
       <div className="alert alert-secondary mb-0">
         <h3>Employee List</h3>
       </div>

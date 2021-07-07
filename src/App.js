@@ -29,7 +29,7 @@ function App() {
 
   return (
     <>
-      {/* <AppNav /> */}
+      {authSuccessFromStorage === "1" && <AppNav />}
 
       <Route exact path="/" component={UserSignIn} />
       <Route exact path="/employee-upsert" component={EmployeeUpsert} />

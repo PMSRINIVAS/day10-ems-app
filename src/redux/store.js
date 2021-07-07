@@ -8,7 +8,7 @@ const initState = {
 
   //AUTH FAILS=> TRUE
   authFailure: false,
-  authSuccess: false,
+  authSuccess: false, //once user signed in successfully, store this info in session/localstorage
 };
 
 // ACTION TYPES :: EMPLOYEE :: ENTITY1
@@ -93,7 +93,11 @@ export const authenticateUserAction = (payload) => {
       //UPDATE THE UI
       dispatch({ type: AUTH_SUCCESS_ACTION_TYPE, payload: true });
 
-      //Page is redirection so no alert until 5 secs..
+      //Will store the success information in storage
+      //TODO will save into the storage
+      localStorage.setItem("authSuccess", "1");
+
+      //Page is redirected to another page. so no alert until 5 secs..
     } else {
       //INVALID USER :: AUTH FAILS
       //UPDATE THE UI
@@ -110,6 +114,10 @@ export const authenticateUserAction = (payload) => {
 export const signOutAction = () => {
   return async (dispatch) => {
     console.log("signout");
+
+    //remove the storage/cookies...
+    localStorage.removeItem("authSuccess", "1");
+
     dispatch({ type: AUTH_SUCCESS_ACTION_TYPE, payload: false });
   };
 };

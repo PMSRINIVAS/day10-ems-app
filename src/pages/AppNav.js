@@ -1,3 +1,4 @@
+import { Nav, Navbar } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { signOutAction } from "../redux/store";
@@ -16,24 +17,17 @@ export const AppNav = () => {
   };
 
   return (
-    <div className="bg-dark text-light p-3 d-flex justify-content-end align-items-center">
-      <Link to="/employee-list">
-        <h6 className="mr-3">EMP-List</h6>
-      </Link>
-
-      <Link to="/employee-upsert">
-        <h6>EMP-Upsert</h6>
-      </Link>
-
-      <h6 className="ml-2 text-danger" onClick={signOut} role="button">
-        Sign Out
-      </h6>
-      {/* <input
-        type="button"
-        value="Sign Out"
-        onClick={signOut}
-        className="btn btn-info ml-2"
-      /> */}
-    </div>
+    <Navbar bg="dark" variant="dark">
+      <Navbar.Brand href="#home">EMS App</Navbar.Brand>
+      <Nav className="ml-auto">
+        <Nav.Link as={Link} to="/employee-list">
+          EMP-LIST
+        </Nav.Link>
+        <Nav.Link as={Link} to="/employee-upsert">
+          EMP-UPSERT
+        </Nav.Link>
+        <Nav.Link onClick={signOut}>SIGN OUT</Nav.Link>
+      </Nav>
+    </Navbar>
   );
 };

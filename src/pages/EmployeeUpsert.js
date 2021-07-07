@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createEmployeeAction } from "../redux/store";
-import { AppNav } from "./AppNav";
+import { createEmployeeAction } from "../redux/EmployeeReducer";
 
 export const EmployeeUpsert = () => {
   const dispatch = useDispatch();
@@ -64,12 +63,11 @@ export const EmployeeUpsert = () => {
 
   return (
     <div>
-      {/* <AppNav /> */}
       <div className="alert alert-secondary">
         <h3>Employee Create</h3>
       </div>
 
-      {state.progress && (
+      {state.employee.progress && (
         <div className="mx-4 alert alert-success">
           User Created Successfully
         </div>

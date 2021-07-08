@@ -22,6 +22,12 @@ export const AppNav = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
+          <Nav.Link as={Link} to="/todo-list">
+            Todo List
+          </Nav.Link>
+          <Nav.Link as={Link} to="/todo-upsert">
+            Todo Upsert
+          </Nav.Link>
           <Nav.Link as={Link} to="/social-book">
             Social Book
           </Nav.Link>

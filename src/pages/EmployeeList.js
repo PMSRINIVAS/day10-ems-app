@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   deleteEmployeeAction,
   getAllEmployeeAction,
+  updateRenderAction,
 } from "../redux/EmployeeReducer";
 
 export const EmployeeList = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
@@ -17,6 +20,16 @@ export const EmployeeList = () => {
     console.log("DELETE RECORD", item.id);
     //dispatch the call.
     dispatch(deleteEmployeeAction(item));
+  };
+
+  // Step2-update
+  const updateRecord = (item) => {
+    console.log("UPDATE RECORD", item);
+
+    // Step3-update
+    dispatch(updateRenderAction(item));
+
+    history.push("/employee-upsert");
   };
 
   return (
@@ -45,12 +58,19 @@ export const EmployeeList = () => {
               <td>{item.email}</td>
               <td>{item.mobile}</td>
               <td>
+                {/**Step1-update */}
+                <input
+                  type="button"
+                  value="UPDATE"
+                  className="btn btn-outline-secondary btn-sm mr-1"
+                  onClick={() => updateRecord(item)}
+                />
                 <input
                   type="button"
                   value="DELETE"
                   // onClick={deleteRecord}
                   onClick={() => deleteRecord(item)}
-                  className="btn btn-outline-danger btn-sm "
+                  className="btn btn-outline-danger btn-sm ml-1 "
                 />
               </td>
             </tr>

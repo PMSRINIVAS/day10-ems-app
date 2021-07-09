@@ -3,11 +3,16 @@ import axios from "axios";
 const initState = {
   employeeList: [],
   progress: false,
+
+  //onclick of update button, the key will be updated
+  uref: null,
 };
 
 // ACTION TYPES :: EMPLOYEE :: ENTITY1
 const PROGRESS_ACTION_TYPE = "PROGRESS_ACTION_TYPE";
 const EMPLOYEE_GET_ALL_ACTION_TYPE = "EMPLOYEE_GET_ALL_ACTION_TYPE";
+
+const EMPLOYEE_UPDATE_RENDER_ACTION_TYPE = "EMPLOYEE_UPDATE_RENDER_ACTION_TYPE";
 
 // ACTIONS :: ENTITY 1
 export const getAllEmployeeAction = () => {
@@ -50,6 +55,14 @@ export const deleteEmployeeAction = (payload) => {
   };
 };
 
+// step4
+export const updateRenderAction = (payload) => {
+  //ONLY UPDATING THE UI
+
+  //step5
+  return { type: EMPLOYEE_UPDATE_RENDER_ACTION_TYPE, payload: payload };
+};
+
 // REDURE FOR STATE UPDTE
 export function EmployeeReducer(state = initState, action) {
   switch (action.type) {
@@ -58,6 +71,10 @@ export function EmployeeReducer(state = initState, action) {
 
     case PROGRESS_ACTION_TYPE:
       return { ...state, progress: action.payload };
+
+    //step6
+    case EMPLOYEE_UPDATE_RENDER_ACTION_TYPE:
+      return { ...state, uref: action.payload };
 
     default:
       return state;

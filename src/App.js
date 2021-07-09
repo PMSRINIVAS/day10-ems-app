@@ -38,12 +38,12 @@ function App() {
       <Route exact path="/" component={UserSignIn} />
 
       {/**Social Book */}
-      <Route exact path="/social-book" component={SocialBook} />
-      <Route exact path="/social-profile" component={SocialProfile} />
+      {/* <Route exact path="/social-book" component={SocialBook} />
+      <Route exact path="/social-profile" component={SocialProfile} /> */}
 
       {/**ToDo App */}
-      <Route exact path="/todo-list" component={TodoList} />
-      <Route exact path="/todo-upsert" component={TodoUpsert} />
+      {/* <Route exact path="/todo-list" component={TodoList} />
+      <Route exact path="/todo-upsert" component={TodoUpsert} /> */}
 
       {/**Demo in the training class */}
       <Route exact path="/employee-upsert" component={EmployeeUpsert} />

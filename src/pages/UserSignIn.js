@@ -35,7 +35,7 @@ export const UserSignIn = () => {
   //REACT ROUTE DOM
   if (state.user.authSuccess == true) {
     //Redirecting the user / employee-list page;
-    history.push("/social-book");
+    history.push("/employee-list");
   }
   return (
     <div

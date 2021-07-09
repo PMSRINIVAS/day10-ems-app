@@ -5,7 +5,7 @@ const initState = {
   progress: false,
 
   //onclick of update button, the key will be updated
-  uref: null,
+  uref: {},
 };
 
 // ACTION TYPES :: EMPLOYEE :: ENTITY1

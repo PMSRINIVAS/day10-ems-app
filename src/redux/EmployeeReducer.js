@@ -44,6 +44,25 @@ export const createEmployeeAction = (payload) => {
   };
 };
 
+export const updateEmployeeAction = (payload) => {
+  return async (dispatch) => {
+    //MAKING THE SERVER CALL
+    const url = `http://localhost:8080/api/v1/employee/get/${payload.id}`;
+    await axios.put(url, payload);
+
+    //making the uref empty again
+    updateRenderAction({});
+
+    // update the ui. TODO
+    dispatch({ type: PROGRESS_ACTION_TYPE, payload: true });
+
+    //after 5 seconds PROGRESS :: FALSE AGAIN
+    setTimeout(() => {
+      dispatch({ type: PROGRESS_ACTION_TYPE, payload: false });
+    }, 5000);
+  };
+};
+
 export const deleteEmployeeAction = (payload) => {
   return async (dispatch) => {
     //MAKE AN API/SERVER CALL
